@@ -3,7 +3,6 @@
 //  Daiqian
 //
 //  Created by 李新新 on 16/4/20.
-//  Copyright © 2016年 Hangzhou Suidifu Network Technology Co., Ltd. All rights reserved.
 //
 
 import UIKit
@@ -13,13 +12,13 @@ public protocol SegueHandlerType {
     associatedtype SegueIdentifiers: RawRepresentable
 }
 
-public extension SegueHandlerType where Self: UIViewController,SegueIdentifiers.RawValue == String {
+public extension SegueHandlerType where Self: UIViewController, SegueIdentifiers.RawValue == String {
     
-    func performSegueWithIdentifier(_ segueIdentifier:SegueIdentifiers,sender:AnyObject?) {
+    func performSegue(withIdentifier segueIdentifier: SegueIdentifiers, sender: Any?) {
         performSegue(withIdentifier: segueIdentifier.rawValue, sender: sender)
     }
     
-    func segueIdentifierForSegue(_ segue:UIStoryboardSegue) -> SegueIdentifiers {
+    func segueIdentifier(for segue: UIStoryboardSegue) -> SegueIdentifiers {
         guard let identifier = segue.identifier, let segueIdentifier = SegueIdentifiers(rawValue: identifier) else {
             fatalError("Invalid segue identifier \(segue.identifier)")
         }

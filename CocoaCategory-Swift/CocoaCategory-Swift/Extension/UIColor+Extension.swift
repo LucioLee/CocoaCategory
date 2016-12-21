@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Person. All rights reserved.
 //
 
-import UIKit
+import UIKit.UIColor
 
 public extension UIColor {
     

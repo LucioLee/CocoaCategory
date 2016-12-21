@@ -1,16 +1,16 @@
 //
-//  NSDictionary+LucioCategory.m
+//  NSArray+LucioCategory.m
 //  CocoaCategory-OC
 //
 //  Created by 李新新 on 2016/12/21.
 //
 //
 
-#import "NSDictionary+LucioCategory.h"
+#import "NSArray+LucioCategory.h"
 
-@implementation NSDictionary (LucioCategory)
+@implementation NSArray (LucioCategory)
 
-- (NSString *)lc_JSONString {
+- (nullable NSString *)lc_JSONString {
     if ([NSJSONSerialization isValidJSONObject:self]) {
         NSData *data = [NSJSONSerialization dataWithJSONObject:self
                                                        options:0
@@ -20,7 +20,7 @@
     }
     return nil;
 }
-- (NSString *)lc_prettyJSONString {
+- (nullable NSString *)lc_prettyJSONString {
     if ([NSJSONSerialization isValidJSONObject:self]) {
         NSData *data = [NSJSONSerialization dataWithJSONObject:self
                                                        options:NSJSONWritingPrettyPrinted
@@ -30,33 +30,33 @@
     }
     return nil;
 }
-+ (NSDictionary *)lc_dictionaryWithPlistData:(NSData *)aPlistData {
++ (nullable NSArray *)lc_arrayWithPlistData:(NSData *)aPlistData {
     if (!aPlistData) {
         return nil;
     }
-    NSDictionary *dictionary = [NSPropertyListSerialization propertyListWithData:aPlistData
+    NSArray *array = [NSPropertyListSerialization propertyListWithData:aPlistData
                                                                          options:NSPropertyListImmutable format:NULL
                                                                            error:NULL];
-    if ([dictionary isKindOfClass:[NSDictionary class]]) {
-        return dictionary;
+    if ([array isKindOfClass:[NSArray class]]) {
+        return array;
     }
     return nil;
 }
-+ (NSDictionary *)lc_dictionaryWithPlistString:(NSString *)aPlistString {
++ (nullable NSArray *)lc_arrayWithPlistString:(NSString *)aPlistString {
     if (!aPlistString) {
         return nil;
     }
     NSData *data = [aPlistString dataUsingEncoding:NSUTF8StringEncoding];
-    return [self lc_dictionaryWithPlistData:data];
+    return [self lc_arrayWithPlistData:data];
 }
-- (NSData *)lc_plistData {
+- (nullable NSData *)lc_plistData {
     return [NSPropertyListSerialization dataWithPropertyList:self
                                                       format:NSPropertyListBinaryFormat_v1_0
                                                      options:kNilOptions
                                                        error:NULL];
 }
 
-- (NSString *)lc_plistString {
+- (nullable NSString *)lc_plistString {
     NSData *xmlData = [self lc_plistData];
     if (xmlData) {
         return [[NSString alloc] initWithData:xmlData
@@ -64,34 +64,34 @@
     }
     return nil;
 }
-- (BOOL)lc_isContainObjectForKey:(id)key {
-    if (!key) return NO;
-    return self[key] != nil;
+
+- (id)lc_objectOrNilAtIndex:(NSUInteger)index {
+    return index < self.count ? self[index] : nil;
 }
 
 @end
 
-@implementation NSMutableDictionary (LucioCategory)
+@implementation NSMutableArray (LucioCategory)
 
-+ (NSMutableDictionary *)lc_dictionaryWithPlistData:(NSData *)aPlistData {
++ (nullable NSMutableArray *)lc_arrayWithPlistData:(NSData *)aPlistData {
     if (!aPlistData) {
         return nil;
     }
-    NSMutableDictionary *dictionary = [NSPropertyListSerialization propertyListWithData:aPlistData
-                                                                                options:NSPropertyListMutableContainersAndLeaves
-                                                                                 format:NULL
-                                                                                  error:NULL];
-    if ([dictionary isKindOfClass:[NSMutableDictionary class]]) {
-        return dictionary;
+    NSMutableArray *array = [NSPropertyListSerialization propertyListWithData:aPlistData
+                                                               options:NSPropertyListMutableContainersAndLeaves
+                                                                format:NULL
+                                                                 error:NULL];
+    if ([array isKindOfClass:[NSMutableArray class]]) {
+        return array;
     }
     return nil;
 }
-+ (NSMutableDictionary *)lc_dictionaryWithPlistString:(NSString *)aPlistString {
++ (nullable NSMutableArray *)lc_arrayWithPlistString:(NSString *)aPlistString {
     if (!aPlistString) {
         return nil;
     }
     NSData *data = [aPlistString dataUsingEncoding:NSUTF8StringEncoding];
-    return [self lc_dictionaryWithPlistData:data];
+    return [self lc_arrayWithPlistData:data];
 }
 
 @end

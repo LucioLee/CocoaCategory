@@ -54,8 +54,6 @@ public extension Date {
     public var monthName: String {
         return self.format(by: "MMMM")
     }
-}
-public extension Date {
     
     public static var local: Date {
         let nowDate = Date()
@@ -75,6 +73,22 @@ public extension Date {
         return dateFormatter.date(from: string)
     }
     
+    public func isLeapYear() -> Bool {
+        return ((year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0)))
+    }
+    
+    public func isToday() -> Bool {
+        if fabs(self.timeIntervalSinceNow) >= 60 * 60 * 24 {
+            return false
+        }
+        return Date().day == day
+    }
+    
+    public func isYesterDay() -> Bool {
+        let date = append(days: 1)!
+        return date.isToday()
+    }
+    
     public func format(by dateFormat:String, timeZone: TimeZone = TimeZone.current, locale: Locale = Locale.current) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = locale
@@ -83,39 +97,39 @@ public extension Date {
         return dateFormatter.string(from: self)
     }
     
-    public func append(year: Int) -> Date? {
+    public func append(years: Int) -> Date? {
         var components = DateComponents()
-        components.year = year
+        components.year = years
         return self.add(components: components)
     }
     
-    public func append(month: Int) -> Date? {
+    public func append(months: Int) -> Date? {
         var components = DateComponents()
-        components.month = month
+        components.month = months
         return self.add(components: components)
     }
     
-    public func append(day: Int) -> Date? {
+    public func append(days: Int) -> Date? {
         var components = DateComponents()
-        components.day = day
+        components.day = days
         return self.add(components: components)
     }
     
-    public func append(hour: Int) -> Date? {
+    public func append(hours: Int) -> Date? {
         var components = DateComponents()
-        components.hour = hour
+        components.hour = hours
         return self.add(components: components)
     }
     
-    public func append(minute: Int) -> Date? {
+    public func append(minutes: Int) -> Date? {
         var components = DateComponents()
-        components.minute = minute
+        components.minute = minutes
         return self.add(components: components)
     }
     
-    public func append(second: Int) -> Date? {
+    public func append(seconds: Int) -> Date? {
         var components = DateComponents()
-        components.minute = second
+        components.minute = seconds
         return self.add(components: components)
     }
     
