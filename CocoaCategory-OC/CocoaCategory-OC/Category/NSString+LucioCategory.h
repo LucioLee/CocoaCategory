@@ -14,6 +14,7 @@
 - (BOOL)lc_isEmpty;
 - (BOOL)lc_isBeginWithString:(NSString *)aString;
 - (BOOL)lc_isEndWithString:(NSString *)aString;
-- (NSString *)lc_subStringFromIndex:(NSInteger)beginIndex toIndex:(NSInteger)endIndex;
+- (NSString *)lc_subStringFromIndex:(NSInteger)beginIndex
+                            toIndex:(NSInteger)endIndex;
 
 @end

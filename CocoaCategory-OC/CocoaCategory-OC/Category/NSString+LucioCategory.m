@@ -22,7 +22,8 @@
 - (BOOL)lc_isEndWithString:(NSString *)aString {
     return [self hasSuffix:aString];
 }
-- (NSString *)lc_subStringFromIndex:(NSInteger)beginIndex toIndex:(NSInteger)endIndex {
+- (NSString *)lc_subStringFromIndex:(NSInteger)beginIndex
+                            toIndex:(NSInteger)endIndex {
     NSRange range;
     range.location = beginIndex;
     range.length = endIndex - beginIndex;
