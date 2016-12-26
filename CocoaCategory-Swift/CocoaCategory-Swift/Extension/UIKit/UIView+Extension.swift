@@ -152,16 +152,13 @@ public extension UIView {
     public func snapshot(in frame: CGRect) -> UIImage? {
         
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0.0)
-        let context = UIGraphicsGetCurrentContext()!
-        context.translateBy(x: frame.origin.x * -1, y: frame.origin.y * -1)
-        
         guard let currentContext = UIGraphicsGetCurrentContext() else {
             return nil
         }
+        currentContext.translateBy(x: frame.origin.x * -1, y: frame.origin.y * -1)
         layer.render(in: currentContext)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         return image
     }
 }

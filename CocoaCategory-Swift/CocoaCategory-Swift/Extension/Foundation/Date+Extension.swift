@@ -55,13 +55,6 @@ public extension Date {
         return self.format(by: "MMMM")
     }
     
-    public static var local: Date {
-        let nowDate = Date()
-        let timeZone = NSTimeZone.local
-        let seconds = timeZone.secondsFromGMT(for: nowDate)
-        return nowDate.addingTimeInterval(TimeInterval(seconds))
-    }
-    
     public static var now: Date {
         return Date()
     }
