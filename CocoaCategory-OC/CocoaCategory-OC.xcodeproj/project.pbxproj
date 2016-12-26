@@ -13,10 +13,10 @@
 		C65B41691E0A62F300D269AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65B41671E0A62F300D269AA /* Main.storyboard */; };
 		C65B416B1E0A62F300D269AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C65B416A1E0A62F300D269AA /* Assets.xcassets */; };
 		C65B416E1E0A62F300D269AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65B416C1E0A62F300D269AA /* LaunchScreen.storyboard */; };
-		C65B41781E0A636C00D269AA /* NSDictionary+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C65B41771E0A636C00D269AA /* NSDictionary+LucioCategory.m */; };
-		C65B417B1E0A646400D269AA /* NSString+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C65B417A1E0A646400D269AA /* NSString+LucioCategory.m */; };
-		C65B41C41E0A9F3F00D269AA /* NSDate+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C65B41C31E0A9F3F00D269AA /* NSDate+LucioCategory.m */; };
-		C6D5F4051E0AC02600A655B2 /* NSArray+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C6D5F4041E0AC02600A655B2 /* NSArray+LucioCategory.m */; };
+		C6CBA9951E112092003FA99F /* NSArray+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA98D1E112092003FA99F /* NSArray+LucioCategory.m */; };
+		C6CBA9961E112092003FA99F /* NSDate+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA98F1E112092003FA99F /* NSDate+LucioCategory.m */; };
+		C6CBA9971E112092003FA99F /* NSDictionary+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA9911E112092003FA99F /* NSDictionary+LucioCategory.m */; };
+		C6CBA9981E112092003FA99F /* NSString+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA9931E112092003FA99F /* NSString+LucioCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,14 +30,14 @@
 		C65B416A1E0A62F300D269AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C65B416D1E0A62F300D269AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C65B416F1E0A62F300D269AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C65B41761E0A636C00D269AA /* NSDictionary+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LucioCategory.h"; sourceTree = "<group>"; };
-		C65B41771E0A636C00D269AA /* NSDictionary+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LucioCategory.m"; sourceTree = "<group>"; };
-		C65B41791E0A646400D269AA /* NSString+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LucioCategory.h"; sourceTree = "<group>"; };
-		C65B417A1E0A646400D269AA /* NSString+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LucioCategory.m"; sourceTree = "<group>"; };
-		C65B41C21E0A9F3F00D269AA /* NSDate+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+LucioCategory.h"; sourceTree = "<group>"; };
-		C65B41C31E0A9F3F00D269AA /* NSDate+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LucioCategory.m"; sourceTree = "<group>"; };
-		C6D5F4031E0AC02600A655B2 /* NSArray+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LucioCategory.h"; sourceTree = "<group>"; };
-		C6D5F4041E0AC02600A655B2 /* NSArray+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LucioCategory.m"; sourceTree = "<group>"; };
+		C6CBA98C1E112092003FA99F /* NSArray+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LucioCategory.h"; sourceTree = "<group>"; };
+		C6CBA98D1E112092003FA99F /* NSArray+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LucioCategory.m"; sourceTree = "<group>"; };
+		C6CBA98E1E112092003FA99F /* NSDate+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+LucioCategory.h"; sourceTree = "<group>"; };
+		C6CBA98F1E112092003FA99F /* NSDate+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LucioCategory.m"; sourceTree = "<group>"; };
+		C6CBA9901E112092003FA99F /* NSDictionary+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LucioCategory.h"; sourceTree = "<group>"; };
+		C6CBA9911E112092003FA99F /* NSDictionary+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LucioCategory.m"; sourceTree = "<group>"; };
+		C6CBA9921E112092003FA99F /* NSString+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LucioCategory.h"; sourceTree = "<group>"; };
+		C6CBA9931E112092003FA99F /* NSString+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LucioCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,16 +95,32 @@
 		C65B41751E0A632B00D269AA /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				C65B41761E0A636C00D269AA /* NSDictionary+LucioCategory.h */,
-				C65B41771E0A636C00D269AA /* NSDictionary+LucioCategory.m */,
-				C6D5F4031E0AC02600A655B2 /* NSArray+LucioCategory.h */,
-				C6D5F4041E0AC02600A655B2 /* NSArray+LucioCategory.m */,
-				C65B41791E0A646400D269AA /* NSString+LucioCategory.h */,
-				C65B417A1E0A646400D269AA /* NSString+LucioCategory.m */,
-				C65B41C21E0A9F3F00D269AA /* NSDate+LucioCategory.h */,
-				C65B41C31E0A9F3F00D269AA /* NSDate+LucioCategory.m */,
+				C6CBA98B1E112092003FA99F /* Foundation */,
+				C6CBA9941E112092003FA99F /* UIKit */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		C6CBA98B1E112092003FA99F /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				C6CBA98C1E112092003FA99F /* NSArray+LucioCategory.h */,
+				C6CBA98D1E112092003FA99F /* NSArray+LucioCategory.m */,
+				C6CBA98E1E112092003FA99F /* NSDate+LucioCategory.h */,
+				C6CBA98F1E112092003FA99F /* NSDate+LucioCategory.m */,
+				C6CBA9901E112092003FA99F /* NSDictionary+LucioCategory.h */,
+				C6CBA9911E112092003FA99F /* NSDictionary+LucioCategory.m */,
+				C6CBA9921E112092003FA99F /* NSString+LucioCategory.h */,
+				C6CBA9931E112092003FA99F /* NSString+LucioCategory.m */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		C6CBA9941E112092003FA99F /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,12 +194,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C65B41661E0A62F200D269AA /* ViewController.m in Sources */,
+				C6CBA9981E112092003FA99F /* NSString+LucioCategory.m in Sources */,
+				C6CBA9961E112092003FA99F /* NSDate+LucioCategory.m in Sources */,
 				C65B41631E0A62F200D269AA /* AppDelegate.m in Sources */,
+				C6CBA9971E112092003FA99F /* NSDictionary+LucioCategory.m in Sources */,
 				C65B41601E0A62F200D269AA /* main.m in Sources */,
-				C6D5F4051E0AC02600A655B2 /* NSArray+LucioCategory.m in Sources */,
-				C65B41C41E0A9F3F00D269AA /* NSDate+LucioCategory.m in Sources */,
-				C65B41781E0A636C00D269AA /* NSDictionary+LucioCategory.m in Sources */,
-				C65B417B1E0A646400D269AA /* NSString+LucioCategory.m in Sources */,
+				C6CBA9951E112092003FA99F /* NSArray+LucioCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
