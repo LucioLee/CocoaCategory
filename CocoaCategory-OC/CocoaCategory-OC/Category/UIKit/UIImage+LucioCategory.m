@@ -12,14 +12,16 @@
 
 - (UIColor *)lc_colorAtPoint:(CGPoint)point {
     
-    if(!CGRectContainsPoint(CGRectMake(0, 0, self.size.width, self.size.height), point)) {
-        return nil;
-    }
-    // 申请地址空间
+    if (self.CGImage == NULL) { return nil; }
     size_t pixelsWidth = CGImageGetWidth(self.CGImage);
     size_t pixelsHeight = CGImageGetHeight(self.CGImage);
-    size_t bitmapBytesPerRow = pixelsWidth * 4;
-    void *bitmapData = malloc(bitmapBytesPerRow * pixelsHeight);
+    if(!CGRectContainsPoint(CGRectMake(0, 0, pixelsWidth, pixelsHeight), point)) {
+        return nil;
+    }
+    
+    // 申请地址空间
+    size_t bytesPerRow = pixelsWidth * 4;
+    void *bitmapData = malloc(bytesPerRow * pixelsHeight);
     if (bitmapData == NULL) { return nil; }
     // 创建颜色空间
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -32,7 +34,7 @@
                                                  pixelsWidth,
                                                  pixelsHeight,
                                                  8,
-                                                 bitmapBytesPerRow,
+                                                 bytesPerRow,
                                                  colorSpace,
                                                  kCGImageAlphaPremultipliedLast);
     if (context == NULL) {

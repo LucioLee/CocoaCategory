@@ -26,6 +26,48 @@ public extension UIImage {
     public var width: CGFloat {
         return size.width
     }
+    public func color(at point: CGPoint) -> UIColor? {
+        guard let aCGImage = cgImage else {
+            return nil
+        }
+        
+        let pixelsWidth = aCGImage.width
+        let pixelsHeight = aCGImage.height
+        let drawRect = CGRect(x: 0, y: 0, width: pixelsWidth, height: pixelsHeight)
+        if (!drawRect.contains(point)) {
+            return nil
+        }
+        let bytesPerPixel = 4
+        let bytesPerRow = pixelsWidth * bytesPerPixel
+        let bitsPerComponent = 8
+        let bitmapDataPointer = malloc(bytesPerRow * pixelsHeight)
+        defer {
+            free(bitmapDataPointer)
+        }
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        
+        guard let context = CGContext(data: bitmapDataPointer,
+                                      width: pixelsWidth,
+                                      height: pixelsHeight,
+                                      bitsPerComponent: bitsPerComponent,
+                                      bytesPerRow: bytesPerRow,
+                                      space: colorSpace,
+                                      bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
+                                        return nil
+        }
+        context.draw(aCGImage, in: drawRect)
+        guard let imageDataPointer = context.data else {
+            return nil
+        }
+        
+        let offset = 4 * (Int(pixelsWidth) * Int(point.y) + Int(point.x))
+        let red   = CGFloat(imageDataPointer.load(fromByteOffset: offset + 0, as: UInt8.self)) / 255.0
+        let green = CGFloat(imageDataPointer.load(fromByteOffset: offset + 1, as: UInt8.self)) / 255.0
+        let blue  = CGFloat(imageDataPointer.load(fromByteOffset: offset + 2, as: UInt8.self)) / 255.0
+        let alpha = CGFloat(imageDataPointer.load(fromByteOffset: offset + 3, as: UInt8.self)) / 255.0
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
     
     public class func image(with color:UIColor, and size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         UIGraphicsBeginImageContext(size)
