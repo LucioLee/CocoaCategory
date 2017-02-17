@@ -13,14 +13,19 @@
 - (UIColor *)lc_colorAtPoint:(CGPoint)point {
     
     if (self.CGImage == NULL) { return nil; }
+    
     size_t pixelsWidth = CGImageGetWidth(self.CGImage);
     size_t pixelsHeight = CGImageGetHeight(self.CGImage);
-    if(!CGRectContainsPoint(CGRectMake(0, 0, pixelsWidth, pixelsHeight), point)) {
+    
+    CGRect drawRect = CGRectMake(0, 0, pixelsWidth, pixelsHeight);
+    
+    if(!CGRectContainsPoint(drawRect, point)) {
         return nil;
     }
-    
     // 申请地址空间
-    size_t bytesPerRow = pixelsWidth * 4;
+    size_t bitPerPixel = 4;
+    size_t bytesPerRow = pixelsWidth * bitPerPixel;
+    size_t bitsPerComponent = 8;
     void *bitmapData = malloc(bytesPerRow * pixelsHeight);
     if (bitmapData == NULL) { return nil; }
     // 创建颜色空间
@@ -33,7 +38,7 @@
     CGContextRef context = CGBitmapContextCreate(bitmapData,
                                                  pixelsWidth,
                                                  pixelsHeight,
-                                                 8,
+                                                 bitsPerComponent,
                                                  bytesPerRow,
                                                  colorSpace,
                                                  kCGImageAlphaPremultipliedLast);
@@ -43,7 +48,7 @@
         return nil;
     }
     // 将图片绘制到位图上下文
-    CGContextDrawImage(context, CGRectMake(0,0, pixelsWidth, pixelsHeight), self.CGImage);
+    CGContextDrawImage(context, drawRect, self.CGImage);
     
     // 获取位图数据指针
     UInt8 *data = (UInt8 *)CGBitmapContextGetData(context);
