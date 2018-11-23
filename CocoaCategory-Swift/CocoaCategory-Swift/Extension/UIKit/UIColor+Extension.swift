@@ -28,4 +28,19 @@ public extension UIColor {
         let blue  = CGFloat((hexLiteral >> 00) & 0xFF) / 255.0
         self.init(red: red, green: green, blue: blue, alpha: 1)
     }
+    
+    // MARK: 在该颜色的基础上，混合其他颜色
+    func add(color: UIColor, blendModel: CGBlendMode) -> UIColor? {
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        var pixel = Array<UInt8>(repeating: 0, count: 4)
+        guard let context = CGContext(data: &pixel, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue) else {
+            return nil
+        }
+        context.setFillColor(cgColor)
+        context.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        context.setBlendMode(blendModel)
+        context.setFillColor(color.cgColor)
+        context.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        return UIColor(red: CGFloat(pixel[0]) / 255.0, green: CGFloat(pixel[1]) / 255.0, blue: CGFloat(pixel[2]) / 255.0, alpha: CGFloat(pixel[3]) / 255.0)
+    }
 }

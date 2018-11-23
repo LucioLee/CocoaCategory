@@ -37,20 +37,21 @@ public extension UIImage {
         if (!drawRect.contains(point)) {
             return nil
         }
-        let bytesPerPixel = 4
-        let bytesPerRow = pixelsWidth * bytesPerPixel
+        //        let bytesPerPixel = 4
+        //        let bytesPerRow = pixelsWidth * bytesPerPixel
         let bitsPerComponent = 8
-        let bitmapDataPointer = malloc(bytesPerRow * pixelsHeight)
-        defer {
-            free(bitmapDataPointer)
-        }
+        //        let bitmapDataPointer = malloc(bytesPerRow * pixelsHeight)
+        //        defer {
+        //            free(bitmapDataPointer)
+        //        }
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        
-        guard let context = CGContext(data: bitmapDataPointer,
+        // data:如果不为 NULL，那么它应该指向一块大小至少为 bytesPerRow * height 字节的内存；如果为 NULL ，那么系统就会为我们自动分配和释放所需的内存，所以一般指定 NULL 即可;
+        // bytesPerRow ：位图的每一行使用的字节数，大小至少为 width * bytes per pixel 字节。有意思的是，当我们指定 0 时，系统不仅会为我们自动计算，而且还会进行 cache line alignment 的优化，更多信息可以查看 https://stackoverflow.com/questions/23790837/what-is-byte-alignment-cache-line-alignment-for-core-animation-why-it-matters 和 https://stackoverflow.com/questions/15935074/why-is-my-images-bytes-per-row-more-than-its-bytes-per-pixel-times-its-width
+        guard let context = CGContext(data: nil,
                                       width: pixelsWidth,
                                       height: pixelsHeight,
                                       bitsPerComponent: bitsPerComponent,
-                                      bytesPerRow: bytesPerRow,
+                                      bytesPerRow: 0,
                                       space: colorSpace,
                                       bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
                                         return nil
@@ -78,9 +79,13 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
-    public func fixOrientation() -> UIImage {
+    public func fixOrientation() -> UIImage? {
         
         if imageOrientation == .up { return self }
+        
+        guard let aCGImage = self.cgImage else {
+            return nil
+        }
         
         var transform: CGAffineTransform = CGAffineTransform.identity
         
@@ -110,17 +115,37 @@ public extension UIImage {
         default:
             break
         }
-        let drawSize = [.left, .leftMirrored, .right, .rightMirrored].contains(imageOrientation) ? CGSize(width: size.height, height: size.width) : CGSize(width: size.width, height: size.height)
-        let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: cgImage!.bitsPerComponent, bytesPerRow: 0, space: cgImage!.colorSpace!, bitmapInfo: cgImage!.bitmapInfo.rawValue)!
-        context.concatenate(transform)
-        context.draw(cgImage!, in: CGRect(origin: CGPoint.zero, size:drawSize))
-        let cgImg = context.makeImage()!
-        let img:UIImage = UIImage(cgImage: cgImg)
+        let pixelsWidth: Int
+        let pixelsHeight: Int
         
-        return img
+        switch imageOrientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            pixelsWidth = aCGImage.height
+            pixelsHeight = aCGImage.width
+        default:
+            pixelsWidth = aCGImage.width
+            pixelsHeight = aCGImage.height
+        }
+        guard let colorSpace = aCGImage.colorSpace,
+            let context = CGContext(data: nil, width: pixelsWidth, height: pixelsHeight, bitsPerComponent: aCGImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: aCGImage.bitmapInfo.rawValue) else {
+                return nil
+        }
+        context.concatenate(transform)
+        context.draw(aCGImage, in: CGRect(x: 0, y: 0, width: pixelsWidth, height: pixelsHeight))
+        guard let newCGImage = context.makeImage() else {
+            return nil
+        }
+        let newImage = UIImage(cgImage: newCGImage, scale: scale, orientation: imageOrientation)
+        return newImage
+        
     }
     
-    public func rotate(with orientation: UIImageRotateOrientation) -> UIImage {
+    public func rotate(with orientation: UIImageRotateOrientation) -> UIImage? {
+        
+        guard let aCGImage = self.cgImage else {
+            return nil
+        }
+        
         var transform = CGAffineTransform.identity
         switch orientation {
         case .mirrored :
@@ -146,13 +171,40 @@ public extension UIImage {
             transform = transform.rotated(by: CGFloat.pi / 2.0)
             transform = transform.scaledBy(x: 1, y: -1)
         }
-        let drawSize = [.left, .leftMirrored, .right, .rightMirrored].contains(orientation) ? CGSize(width: size.height, height: size.width) : CGSize(width: size.width, height: size.height)
         
-        let context = CGContext(data: nil, width: Int(drawSize.width), height: Int(drawSize.height), bitsPerComponent: cgImage!.bitsPerComponent,bytesPerRow: 0, space: cgImage!.colorSpace!, bitmapInfo: cgImage!.bitmapInfo.rawValue)!
+        
+        let pixelsWidth: Int
+        let pixelsHeight: Int
+        
+        switch orientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            pixelsWidth = aCGImage.height
+            pixelsHeight = aCGImage.width
+        default:
+            pixelsWidth = aCGImage.width
+            pixelsHeight = aCGImage.height
+        }
+        guard let colorSpace = aCGImage.colorSpace,
+            let context = CGContext(data: nil, width: pixelsWidth, height: pixelsHeight, bitsPerComponent: aCGImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: aCGImage.bitmapInfo.rawValue) else {
+                return nil
+        }
         context.concatenate(transform)
-        context.draw(cgImage!, in: CGRect(x: 0, y: 0, width:size.width, height: size.height))
-        let cgImg = context.makeImage()!
-        let img =  UIImage(cgImage: cgImg, scale: scale, orientation: imageOrientation)
-        return img
+        context.draw(aCGImage, in: CGRect(x: 0, y: 0, width: pixelsWidth, height: pixelsHeight))
+        guard let newCGImage = context.makeImage() else {
+            return nil
+        }
+        let newImage = UIImage(cgImage: newCGImage, scale: scale, orientation: imageOrientation)
+        return newImage
+    }
+    
+    var hasAlpha: Bool {
+        guard let alphaInfo = cgImage?.alphaInfo else {
+            return false
+        }
+        if alphaInfo == .premultipliedLast || alphaInfo == .premultipliedFirst || alphaInfo == .first || alphaInfo == .last {
+            return true
+        } else {
+            return false
+        }
     }
 }
