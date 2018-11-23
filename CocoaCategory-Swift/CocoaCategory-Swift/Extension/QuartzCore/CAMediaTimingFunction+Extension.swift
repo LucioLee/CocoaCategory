@@ -10,9 +10,9 @@ import QuartzCore.CAMediaTimingFunction
 
 public extension CAMediaTimingFunction {
     
-    @nonobjc public static let Linear        = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-    @nonobjc public static let EaseIn        = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-    @nonobjc public static let Default       = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
-    @nonobjc public static let EaseOut       = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-    @nonobjc public static let EaseInEaseOut = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    @nonobjc public static let Linear        = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+    @nonobjc public static let EaseIn        = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+    @nonobjc public static let Default       = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
+    @nonobjc public static let EaseOut       = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+    @nonobjc public static let EaseInEaseOut = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
 }

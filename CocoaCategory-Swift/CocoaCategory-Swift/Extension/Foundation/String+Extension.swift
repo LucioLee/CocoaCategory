@@ -33,15 +33,14 @@ public extension String {
     public var lowercaseFirstCharacter: String {
         let offsetedIndex = index(startIndex, offsetBy: 1)
         let range = startIndex..<offsetedIndex
-        let firstChar = substring(to: offsetedIndex).lowercased()
+        let firstChar = self[range].lowercased()
         return replacingCharacters(in: range, with: firstChar)
     }
     
     public var uppercaseFirstCharacter: String {
         let offsetedIndex = index(startIndex, offsetBy: 1)
         let range = startIndex..<offsetedIndex
-        let firstChar = substring(to: offsetedIndex).uppercased()
+        let firstChar = self[range].uppercased()
         return replacingCharacters(in: range, with: firstChar)
     }
-    
 }

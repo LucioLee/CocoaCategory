@@ -87,25 +87,25 @@ public extension UIImage {
         switch imageOrientation {
         case .left :
             transform = transform.translatedBy(x: size.width, y: 0)
-            transform = transform.rotated(by: CGFloat(M_PI_2))
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
         case .down :
             transform = transform.translatedBy(x: size.width, y: size.height)
-            transform = transform.rotated(by: CGFloat(M_PI))
+            transform = transform.rotated(by: CGFloat.pi)
         case .right:
             transform = transform.translatedBy(x: 0, y: size.height)
-            transform = transform.rotated(by: CGFloat(-M_PI_2))
+            transform = transform.rotated(by: -CGFloat.pi / 2.0)
         case .upMirrored :
             transform = transform.translatedBy(x: size.width,y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
         case .leftMirrored:
-            transform = transform.rotated(by: CGFloat(M_PI_2))
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
             transform = transform.translatedBy(x: size.height ,y: -size.width)
             transform = transform.scaledBy(x: -1, y: 1)
         case .downMirrored:
             transform = transform.translatedBy(x: 0,y: size.height)
             transform = transform.scaledBy(x: 1, y: -1)
         case .rightMirrored:
-            transform = transform.rotated(by: CGFloat(M_PI_2))
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
             transform = transform.scaledBy(x: 1, y: -1)
         default:
             break
@@ -128,22 +128,22 @@ public extension UIImage {
             transform = transform.scaledBy(x: -1, y: 1)
         case .left :
             transform = transform.translatedBy(x: size.height,y: 0)
-            transform = transform.rotated(by: CGFloat(M_PI_2))
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
         case .leftMirrored :
-            transform = transform.rotated(by: CGFloat(M_PI_2))
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
             transform = transform.translatedBy(x: size.width ,y: -size.height)
             transform = transform.scaledBy(x: -1, y: 1)
         case .down :
             transform = transform.translatedBy(x: size.width,y: size.height)
-            transform = transform.rotated(by: CGFloat(M_PI))
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
         case .downMirrored :
             transform = transform.translatedBy(x: 0,y: size.height)
             transform = transform.scaledBy(x: 1, y: -1)
         case .right :
             transform = transform.translatedBy(x: 0,y: size.width)
-            transform = transform.rotated(by: -CGFloat(M_PI_2))
+            transform = transform.rotated(by: -CGFloat.pi / 2.0)
         case .rightMirrored :
-            transform = transform.rotated(by: CGFloat(M_PI_2))
+            transform = transform.rotated(by: CGFloat.pi / 2.0)
             transform = transform.scaledBy(x: 1, y: -1)
         }
         let drawSize = [.left, .leftMirrored, .right, .rightMirrored].contains(orientation) ? CGSize(width: size.height, height: size.width) : CGSize(width: size.width, height: size.height)
