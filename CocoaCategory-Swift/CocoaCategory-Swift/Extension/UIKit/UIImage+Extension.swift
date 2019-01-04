@@ -91,23 +91,23 @@ public extension UIImage {
         
         switch imageOrientation {
         case .left :
-            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.translatedBy(x: CGFloat(aCGImage.height), y: 0)
             transform = transform.rotated(by: CGFloat.pi / 2.0)
         case .down :
-            transform = transform.translatedBy(x: size.width, y: size.height)
+            transform = transform.translatedBy(x: CGFloat(aCGImage.width), y: CGFloat(aCGImage.height))
             transform = transform.rotated(by: CGFloat.pi)
         case .right:
-            transform = transform.translatedBy(x: 0, y: size.height)
+            transform = transform.translatedBy(x: 0, y: CGFloat(aCGImage.width))
             transform = transform.rotated(by: -CGFloat.pi / 2.0)
         case .upMirrored :
-            transform = transform.translatedBy(x: size.width,y: 0)
+            transform = transform.translatedBy(x: CGFloat(aCGImage.width),y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
         case .leftMirrored:
             transform = transform.rotated(by: CGFloat.pi / 2.0)
-            transform = transform.translatedBy(x: size.height ,y: -size.width)
+            transform = transform.translatedBy(x: CGFloat(aCGImage.width) ,y: CGFloat(-aCGImage.height))
             transform = transform.scaledBy(x: -1, y: 1)
         case .downMirrored:
-            transform = transform.translatedBy(x: 0,y: size.height)
+            transform = transform.translatedBy(x: 0,y: CGFloat(aCGImage.height))
             transform = transform.scaledBy(x: 1, y: -1)
         case .rightMirrored:
             transform = transform.rotated(by: CGFloat.pi / 2.0)
@@ -131,7 +131,7 @@ public extension UIImage {
                 return nil
         }
         context.concatenate(transform)
-        context.draw(aCGImage, in: CGRect(x: 0, y: 0, width: pixelsWidth, height: pixelsHeight))
+        context.draw(aCGImage, in: CGRect(x: 0, y: 0, width: aCGImage.width, height: aCGImage.height))
         guard let newCGImage = context.makeImage() else {
             return nil
         }
@@ -149,23 +149,23 @@ public extension UIImage {
         var transform = CGAffineTransform.identity
         switch orientation {
         case .mirrored :
-            transform = transform.translatedBy(x: size.width,y: 0)
+            transform = transform.translatedBy(x: CGFloat(aCGImage.width),y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
         case .left :
-            transform = transform.translatedBy(x: size.height,y: 0)
+            transform = transform.translatedBy(x: CGFloat(aCGImage.height),y: 0)
             transform = transform.rotated(by: CGFloat.pi / 2.0)
         case .leftMirrored :
             transform = transform.rotated(by: CGFloat.pi / 2.0)
-            transform = transform.translatedBy(x: size.width ,y: -size.height)
+            transform = transform.translatedBy(x: CGFloat(aCGImage.width) ,y: CGFloat(-aCGImage.height))
             transform = transform.scaledBy(x: -1, y: 1)
         case .down :
-            transform = transform.translatedBy(x: size.width,y: size.height)
-            transform = transform.rotated(by: CGFloat.pi / 2.0)
+            transform = transform.translatedBy(x: CGFloat(aCGImage.width),y: CGFloat(aCGImage.height))
+            transform = transform.rotated(by: CGFloat.pi)
         case .downMirrored :
-            transform = transform.translatedBy(x: 0,y: size.height)
+            transform = transform.translatedBy(x: 0,y: CGFloat(aCGImage.height))
             transform = transform.scaledBy(x: 1, y: -1)
         case .right :
-            transform = transform.translatedBy(x: 0,y: size.width)
+            transform = transform.translatedBy(x: 0,y: CGFloat(aCGImage.width))
             transform = transform.rotated(by: -CGFloat.pi / 2.0)
         case .rightMirrored :
             transform = transform.rotated(by: CGFloat.pi / 2.0)
@@ -189,7 +189,7 @@ public extension UIImage {
                 return nil
         }
         context.concatenate(transform)
-        context.draw(aCGImage, in: CGRect(x: 0, y: 0, width: pixelsWidth, height: pixelsHeight))
+        context.draw(aCGImage, in: CGRect(x: 0, y: 0, width: aCGImage.width, height: aCGImage.height))
         guard let newCGImage = context.makeImage() else {
             return nil
         }
