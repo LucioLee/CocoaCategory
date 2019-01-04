@@ -7,6 +7,7 @@
 //
 
 #import "NSString+LucioCategory.h"
+#import "GCD+Extension.h"
 
 @implementation NSString (LucioCategory)
 

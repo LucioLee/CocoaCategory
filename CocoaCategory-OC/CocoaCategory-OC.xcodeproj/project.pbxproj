@@ -13,6 +13,7 @@
 		C65B41691E0A62F300D269AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65B41671E0A62F300D269AA /* Main.storyboard */; };
 		C65B416B1E0A62F300D269AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C65B416A1E0A62F300D269AA /* Assets.xcassets */; };
 		C65B416E1E0A62F300D269AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65B416C1E0A62F300D269AA /* LaunchScreen.storyboard */; };
+		C669617D21B17D6600150609 /* GCD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C669617C21B17D6600150609 /* GCD+Extension.m */; };
 		C6789F201E55A81B005E41A8 /* UIImage+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C6789F1F1E55A81B005E41A8 /* UIImage+LucioCategory.m */; };
 		C6CBA9951E112092003FA99F /* NSArray+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA98D1E112092003FA99F /* NSArray+LucioCategory.m */; };
 		C6CBA9961E112092003FA99F /* NSDate+LucioCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CBA98F1E112092003FA99F /* NSDate+LucioCategory.m */; };
@@ -31,6 +32,8 @@
 		C65B416A1E0A62F300D269AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C65B416D1E0A62F300D269AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C65B416F1E0A62F300D269AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C669617B21B17D6600150609 /* GCD+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCD+Extension.h"; sourceTree = "<group>"; };
+		C669617C21B17D6600150609 /* GCD+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GCD+Extension.m"; sourceTree = "<group>"; };
 		C6789F1E1E55A81B005E41A8 /* UIImage+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LucioCategory.h"; sourceTree = "<group>"; };
 		C6789F1F1E55A81B005E41A8 /* UIImage+LucioCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LucioCategory.m"; sourceTree = "<group>"; };
 		C6CBA98C1E112092003FA99F /* NSArray+LucioCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LucioCategory.h"; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				C6CBA9911E112092003FA99F /* NSDictionary+LucioCategory.m */,
 				C6CBA9921E112092003FA99F /* NSString+LucioCategory.h */,
 				C6CBA9931E112092003FA99F /* NSString+LucioCategory.m */,
+				C669617B21B17D6600150609 /* GCD+Extension.h */,
+				C669617C21B17D6600150609 /* GCD+Extension.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 			files = (
 				C6789F201E55A81B005E41A8 /* UIImage+LucioCategory.m in Sources */,
 				C65B41661E0A62F200D269AA /* ViewController.m in Sources */,
+				C669617D21B17D6600150609 /* GCD+Extension.m in Sources */,
 				C6CBA9981E112092003FA99F /* NSString+LucioCategory.m in Sources */,
 				C6CBA9961E112092003FA99F /* NSDate+LucioCategory.m in Sources */,
 				C65B41631E0A62F200D269AA /* AppDelegate.m in Sources */,
