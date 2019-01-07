@@ -79,6 +79,7 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
+    // MARK: 将图片的真实方向调整为手机预览时看到的方向
     public func fixOrientation() -> UIImage? {
         
         if imageOrientation == .up { return self }
@@ -135,11 +136,11 @@ public extension UIImage {
         guard let newCGImage = context.makeImage() else {
             return nil
         }
-        let newImage = UIImage(cgImage: newCGImage, scale: scale, orientation: imageOrientation)
+        let newImage = UIImage(cgImage: newCGImage, scale: scale, orientation: .up)
         return newImage
-        
     }
-    
+
+    // MARK: 旋转图片的方向
     public func rotate(with orientation: UIImageRotateOrientation) -> UIImage? {
         
         guard let aCGImage = self.cgImage else {
