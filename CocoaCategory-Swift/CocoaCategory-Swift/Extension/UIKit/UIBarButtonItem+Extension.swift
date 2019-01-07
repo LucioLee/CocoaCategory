@@ -10,16 +10,15 @@ import UIKit
 
 extension UIBarButtonItem {
     
-    class func item(withImage image: String, highlightImage: String?, target: Any?, action: Selector) -> UIBarButtonItem {
+    class func item(with image: UIImage, highlightedImage: UIImage? = nil, target: Any?, action: Selector) -> UIBarButtonItem {
         
-        let button = UIButton(type: .custom)
-        button.setBackgroundImage(UIImage(named: image), for: .normal)
-        if highlightImage != nil {
-            button.setBackgroundImage(UIImage(named: highlightImage!), for: .highlighted)
+        let button = UIButton(type: UIButton.ButtonType.custom)
+        button.setImage(image, for: UIControl.State.normal)
+        if highlightedImage != nil {
+            button.setImage(highlightedImage, for: UIControl.State.highlighted)
         }
-        button.size = button.currentBackgroundImage!.size
-        
-        button.addTarget(target, action: action, for: .touchUpInside)
+        button.addTarget(target, action: action, for: UIControl.Event.touchUpInside)
+    
         return UIBarButtonItem(customView: button)
     }
 }

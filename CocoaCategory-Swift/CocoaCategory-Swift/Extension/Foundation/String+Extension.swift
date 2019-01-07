@@ -10,7 +10,7 @@ import Foundation
 
 public extension String {
     
-    public var trim: String {
+    public func trim() -> String {
         return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
@@ -20,7 +20,7 @@ public extension String {
         return scanner.scanInt(&value) && scanner.isAtEnd
     }
     
-    public var escaped: String {
+    public func escaped() -> String {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let subDelimitersToEncode = "!$&'()*+,;="
         
@@ -30,14 +30,14 @@ public extension String {
         return self.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? ""
     }
     
-    public var lowercaseFirstCharacter: String {
+    public func lowercaseFirstCharacter() -> String {
         let offsetedIndex = index(startIndex, offsetBy: 1)
         let range = startIndex..<offsetedIndex
         let firstChar = self[range].lowercased()
         return replacingCharacters(in: range, with: firstChar)
     }
     
-    public var uppercaseFirstCharacter: String {
+    public func uppercaseFirstCharacter() -> String {
         let offsetedIndex = index(startIndex, offsetBy: 1)
         let range = startIndex..<offsetedIndex
         let firstChar = self[range].uppercased()

@@ -8,17 +8,18 @@
 
 import UIKit
 
-public enum UIImageRotateOrientation : Int {
-    case left // 90 deg CCW
-    case right // 90 deg CW
-    case down // 180 deg rotation
-    case mirrored // as above but image mirrored along other axis. horizontal flip
-    case downMirrored // horizontal flip
-    case leftMirrored // vertical flip
-    case rightMirrored // vertical flip
-}
 
 public extension UIImage {
+    
+    public enum RotateOrientation : Int {
+        case left // 90 deg CCW
+        case right // 90 deg CW
+        case down // 180 deg rotation
+        case mirrored // as above but image mirrored along other axis. horizontal flip
+        case downMirrored // horizontal flip
+        case leftMirrored // vertical flip
+        case rightMirrored // vertical flip
+    }
     
     public var height: CGFloat {
         return size.height
@@ -141,7 +142,7 @@ public extension UIImage {
     }
 
     // MARK: 旋转图片的方向
-    public func rotate(with orientation: UIImageRotateOrientation) -> UIImage? {
+    public func rotate(with orientation: UIImage.RotateOrientation) -> UIImage? {
         
         guard let aCGImage = self.cgImage else {
             return nil
@@ -207,5 +208,32 @@ public extension UIImage {
         } else {
             return false
         }
+    }
+    public func byAppendingAlpha(alpha: CGFloat) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        guard let cgImage = self.cgImage, let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -self.size.height)
+        context.setBlendMode(CGBlendMode.multiply)
+        context.setAlpha(alpha)
+        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    public func withTintColor(_ tintColor: UIColor, blendMode: CGBlendMode) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
+        tintColor.setFill()
+        let bounds = CGRect(origin: CGPoint.zero, size: self.size)
+        UIRectFill(bounds)
+        self.draw(in: bounds, blendMode: blendMode, alpha: 1.0)
+        if blendMode != CGBlendMode.destinationIn {
+            self.draw(in: bounds, blendMode: CGBlendMode.destinationIn, alpha: 1.0)
+        }
+        let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return tintedImage
     }
 }
