@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIView {
     
-    public var x: CGFloat {
+     var x: CGFloat {
         get {
             return frame.origin.x
         }
@@ -19,7 +19,7 @@ public extension UIView {
         }
     }
     
-    public var y: CGFloat {
+     var y: CGFloat {
         get {
             return frame.origin.y
         }
@@ -28,7 +28,7 @@ public extension UIView {
         }
     }
     
-    public var origin: CGPoint {
+     var origin: CGPoint {
         get {
             return frame.origin
         }
@@ -37,7 +37,7 @@ public extension UIView {
         }
     }
     
-    public var width: CGFloat {
+     var width: CGFloat {
         get {
             return frame.size.width
         }
@@ -46,7 +46,7 @@ public extension UIView {
         }
     }
     
-    public var height: CGFloat {
+     var height: CGFloat {
         get {
             return frame.size.height
         }
@@ -55,7 +55,7 @@ public extension UIView {
         }
     }
     
-    public var size: CGSize {
+     var size: CGSize {
         get {
             return frame.size
         }
@@ -67,7 +67,7 @@ public extension UIView {
 
 @IBDesignable extension UIView {
     
-    @IBInspectable public var cornerRadius: CGFloat {
+    @IBInspectable  var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -76,7 +76,7 @@ public extension UIView {
         }
     }
     
-    @IBInspectable public var borderWidth: CGFloat {
+    @IBInspectable  var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -85,7 +85,7 @@ public extension UIView {
         }
     }
     
-    @IBInspectable public var borderColor: UIColor? {
+    @IBInspectable  var borderColor: UIColor? {
         get {
             if let borderColor = layer.borderColor {
                 return UIColor(cgColor: borderColor)
@@ -97,7 +97,7 @@ public extension UIView {
         }
     }
     
-    @IBInspectable public var masksToBounds: Bool {
+    @IBInspectable  var masksToBounds: Bool {
         get {
             return layer.masksToBounds
         }
@@ -106,7 +106,7 @@ public extension UIView {
         }
     }
     
-    @IBInspectable public var shadowColor: UIColor? {
+    @IBInspectable  var shadowColor: UIColor? {
         get {
             if let shadowColor = layer.shadowColor {
                 return UIColor(cgColor: shadowColor)
@@ -118,7 +118,7 @@ public extension UIView {
         }
     }
     
-    @IBInspectable public var shadowOffset: CGSize {
+    @IBInspectable  var shadowOffset: CGSize {
         get {
             return layer.shadowOffset
         }
@@ -127,7 +127,7 @@ public extension UIView {
         }
     }
     
-    @IBInspectable public var shadowOpacity: Float {
+    @IBInspectable  var shadowOpacity: Float {
         get {
             return layer.shadowOpacity
         }
@@ -136,7 +136,7 @@ public extension UIView {
         }
     }
     
-    @IBInspectable public var shadowRadius: CGFloat {
+    @IBInspectable  var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
         }
@@ -148,7 +148,7 @@ public extension UIView {
 
 public extension UIView {
     
-    public func snapshot(in frame: CGRect) -> UIImage? {
+     func snapshot(in frame: CGRect) -> UIImage? {
         
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0.0)
         guard let currentContext = UIGraphicsGetCurrentContext() else {

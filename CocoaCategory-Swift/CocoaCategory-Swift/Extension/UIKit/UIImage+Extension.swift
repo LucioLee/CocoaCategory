@@ -9,9 +9,9 @@
 import UIKit
 
 
-public extension UIImage {
+ extension UIImage {
     
-    public enum RotateOrientation : Int {
+     enum RotateOrientation : Int {
         case left // 90 deg CCW
         case right // 90 deg CW
         case down // 180 deg rotation
@@ -21,13 +21,13 @@ public extension UIImage {
         case rightMirrored // vertical flip
     }
     
-    public var height: CGFloat {
+     var height: CGFloat {
         return size.height
     }
-    public var width: CGFloat {
+     var width: CGFloat {
         return size.width
     }
-    public func color(at point: CGPoint) -> UIColor? {
+     func color(at point: CGPoint) -> UIColor? {
         guard let aCGImage = cgImage else {
             return nil
         }
@@ -71,7 +71,7 @@ public extension UIImage {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    public class func image(with color:UIColor, and size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+     class func image(with color:UIColor, and size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()!
         context.setFillColor(color.cgColor)
@@ -81,7 +81,7 @@ public extension UIImage {
         return image
     }
     // MARK: 将图片的真实方向调整为手机预览时看到的方向
-    public func fixOrientation() -> UIImage? {
+     func fixOrientation() -> UIImage? {
         
         if imageOrientation == .up { return self }
         
@@ -142,7 +142,7 @@ public extension UIImage {
     }
 
     // MARK: 旋转图片的方向
-    public func rotate(with orientation: UIImage.RotateOrientation) -> UIImage? {
+     func rotate(with orientation: UIImage.RotateOrientation) -> UIImage? {
         
         guard let aCGImage = self.cgImage else {
             return nil
@@ -209,7 +209,7 @@ public extension UIImage {
             return false
         }
     }
-    public func byAppendingAlpha(alpha: CGFloat) -> UIImage? {
+     func byAppendingAlpha(alpha: CGFloat) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         guard let cgImage = self.cgImage, let context = UIGraphicsGetCurrentContext() else {
             return nil
@@ -223,7 +223,7 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
-    public func withTintColor(_ tintColor: UIColor, blendMode: CGBlendMode) -> UIImage? {
+     func withTintColor(_ tintColor: UIColor, blendMode: CGBlendMode) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
         tintColor.setFill()
         let bounds = CGRect(origin: CGPoint.zero, size: self.size)
