@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        [1,2,3,4,5,6].some { $0 > 5 }
-        [1,2,3,4,5,6].every { $0 > 6 }
         return true
     }
 

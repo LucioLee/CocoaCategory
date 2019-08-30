@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIView {
     
-     var x: CGFloat {
+    var x: CGFloat {
         get {
             return frame.origin.x
         }
@@ -19,7 +19,7 @@ public extension UIView {
         }
     }
     
-     var y: CGFloat {
+    var y: CGFloat {
         get {
             return frame.origin.y
         }
@@ -28,7 +28,7 @@ public extension UIView {
         }
     }
     
-     var origin: CGPoint {
+    var origin: CGPoint {
         get {
             return frame.origin
         }
@@ -37,7 +37,7 @@ public extension UIView {
         }
     }
     
-     var width: CGFloat {
+    var width: CGFloat {
         get {
             return frame.size.width
         }
@@ -46,7 +46,7 @@ public extension UIView {
         }
     }
     
-     var height: CGFloat {
+    var height: CGFloat {
         get {
             return frame.size.height
         }
@@ -55,7 +55,7 @@ public extension UIView {
         }
     }
     
-     var size: CGSize {
+    var size: CGSize {
         get {
             return frame.size
         }
@@ -148,7 +148,7 @@ public extension UIView {
 
 public extension UIView {
     
-     func snapshot(in frame: CGRect) -> UIImage? {
+    func snapshot(in frame: CGRect) -> UIImage? {
         
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0.0)
         guard let currentContext = UIGraphicsGetCurrentContext() else {
@@ -161,3 +161,4 @@ public extension UIView {
         return image
     }
 }
+

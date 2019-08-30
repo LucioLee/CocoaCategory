@@ -43,7 +43,7 @@ public extension Array {
     
      subscript(index1: Int, index2: Int, restIndexs: Int...) -> [Element] {
         get {
-            var results: [Element] = [self[index1],self[index2]]
+            var results: [Element] = [self[index1], self[index2]]
             for index in restIndexs {
                 results.append(self[index])
             }
